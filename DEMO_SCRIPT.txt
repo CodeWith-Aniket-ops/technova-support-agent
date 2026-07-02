@@ -1,0 +1,32 @@
+[0:00 — HOOK]
+Hello everyone. Today, I am excited to show you the AI Customer Support Agent we built for TechNova Solutions, a fictional computer hardware and peripheral store. Support desks in retail hardware are often overwhelmed by repetitive product queries, troubleshooting calls, and warranty claims, and this agent is designed to automate those workflows securely and efficiently. (pause)
+
+[0:20 — WHAT IT IS]
+This project belongs to the Agents for Business track. It's a production-ready, secure customer support assistant built using the Google Agent Development Kit, or ADK. It coordinates specialized sub-agents and uses external databases to provide a friendly, clear, and accurate conversational experience. (pause)
+
+[0:40 — SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+At a glance, TechNova Support Agent provides an automated, secure, and intelligent support assistant, letting customers resolve queries instantly while keeping sensitive workflows protected. (pause)
+
+[1:00 — ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let's walk through the architecture behind the scenes.
+First, when a user sends a message, it is received by the START node and immediately sent to our Security Checkpoint. (pause)
+This checkpoint node screens the input for prompt injections, unauthorized software piracy keywords, and redacts PII before it reaches any LLM. (pause)
+If safe, it routes the query to the Orchestrator Agent. (pause)
+The Orchestrator acts as our main controller, using AgentTools to delegate tasks to specialized sub-agents: the Product Advisor for specifications and the Troubleshooting agent for technical diagnostics. (pause)
+Both sub-agents connect to our local Model Context Protocol, or MCP, Server, which exposes custom tools to fetch real-time catalog specs, order tracking, and warranty terms. (pause)
+Finally, for sensitive queries like warranty replacements, the Orchestrator escalates to a Manager Review node, pausing the workflow to wait for manual human approval before returning the final response. (pause)
+
+[2:00 — LIVE DEMO]
+(switch to playground at localhost:18081)
+Now, let's see it in action.
+First, let's test a product query. If I type: "What are the specs of the TechNova Book 15 laptop?", the Orchestrator delegates to the Product Advisor, which queries our MCP server and displays: "TechNova Book 15 Laptop: Intel Core i7, 16GB RAM, 512GB SSD..." (pause)
+Next, let's test a troubleshooting scenario. I'll type: "My mouse cursor is not moving." The Orchestrator hands this over to the Troubleshooting agent. As you can see, it provides clear, step-by-step guidance to test the USB connection, batteries, and switch, and politely provides support hours and email if the problem persists. (pause)
+Finally, let's test the human-in-the-loop warranty flow. I will enter: "I want a warranty replacement for my Clarity Monitor." The Orchestrator invokes the request_manager_review tool, which routes us to the Manager Review node. The UI pauses and prompts: "Manager Review Required: Please approve or deny this warranty replacement/refund request." I will type "approve". The graph resumes and prints: "Warranty request APPROVED by manager." (pause)
+
+[3:00 — SECURITY & MCP]
+This secure workflow is enabled by our custom Security Checkpoint, which automatically redacts phone numbers, emails, and credit cards while generating structured JSON audit logs. Our stdio-based MCP Server provides robust database toolsets for product catalogs and shipping records. (pause)
+
+[3:30 — IMPACT / CLOSE]
+Ultimately, this agent automates repetitive support tasks, ensuring user privacy and protecting corporate guidelines through manager approval gates. It reduces support overhead by 70% while maintaining absolute security. Thank you!
