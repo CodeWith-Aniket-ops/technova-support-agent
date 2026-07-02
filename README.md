@@ -116,3 +116,9 @@ The spoken walkthrough narration for presenting this project can be found in [DE
    .adk/
 
 ⚠️ NEVER push .env to GitHub. Your API key will be exposed publicly.
+
+## Assets
+
+- **Workflow Diagram:** ![Workflow Diagram](assets/architecture_diagram.png)
+- **Cover Page Banner:** ![Cover Banner](assets/cover_page_banner.png)
+
